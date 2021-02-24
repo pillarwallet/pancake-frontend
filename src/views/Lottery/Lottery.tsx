@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { ButtonMenu, ButtonMenuItem } from '@pancakeswap-libs/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import { getLotteryIssueIndex } from 'utils/lotteryUtils'
 import useI18n from 'hooks/useI18n'
 import { useLottery } from 'hooks/useContract'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import Page from 'components/layout/Page'
 import Hero from './components/Hero'
 import Divider from './components/Divider'
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 
 const Lottery: React.FC = () => {
   const lotteryContract = useLottery()
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const TranslateString = useI18n()
   const [activeIndex, setActiveIndex] = useState(0)
   const [historyData, setHistoryData] = useState([])

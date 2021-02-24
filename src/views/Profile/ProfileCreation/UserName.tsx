@@ -17,11 +17,11 @@ import {
   Checkbox,
 } from '@pancakeswap-libs/uikit'
 import { parseISO, formatDistance } from 'date-fns'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useToast } from 'state/hooks'
 import useWeb3 from 'hooks/useWeb3'
 import useI18n from 'hooks/useI18n'
 import useHasCakeBalance from 'hooks/useHasCakeBalance'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import debounce from 'lodash/debounce'
 import useProfileCreation from './contexts/hook'
 import ConfirmProfileCreationModal from '../components/ConfirmProfileCreationModal'
@@ -62,7 +62,7 @@ const UserName: React.FC = () => {
   const [isAcknowledged, setIsAcknoledged] = useState(false)
   const { teamId, tokenId, userName, actions, minimumCakeRequired, allowance } = useProfileCreation()
   const TranslateString = useI18n()
-  const { account, ethereum } = useWallet()
+  const { account, ethereum } = useEtherspotWallet()
   const { toastError } = useToast()
   const web3 = useWeb3()
   const [existingUserState, setExistingUserState] = useState<ExistingUserState>(ExistingUserState.IDLE)

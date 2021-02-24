@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Button, InjectedModalProps, Skeleton, Text } from '@pancakeswap-libs/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useDispatch } from 'react-redux'
 import nftList from 'config/constants/nfts'
 import { useProfile, useToast } from 'state/hooks'
@@ -10,6 +9,7 @@ import useGetWalletNfts from 'hooks/useGetWalletNfts'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { usePancakeRabbits, useProfile as useProfileContract } from 'hooks/useContract'
 import { getPancakeProfileAddress, getPancakeRabbitsAddress } from 'utils/addressHelpers'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import SelectionCard from '../SelectionCard'
 import ApproveConfirmButtons from '../ApproveConfirmButtons'
 
@@ -23,7 +23,7 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
   const { profile } = useProfile()
   const pancakeRabbitsContract = usePancakeRabbits()
   const profileContract = useProfileContract()
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const { toastSuccess } = useToast()
   const {
     isApproving,

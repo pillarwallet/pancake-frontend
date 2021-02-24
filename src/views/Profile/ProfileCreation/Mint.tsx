@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useCake, useBunnyFactory } from 'hooks/useContract'
 import useHasCakeBalance from 'hooks/useHasCakeBalance'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import nftList from 'config/constants/nfts'
 import SelectionCard from '../components/SelectionCard'
 import NextStepButton from '../components/NextStepButton'
@@ -21,7 +21,7 @@ const Mint: React.FC = () => {
   const [bunnyId, setBunnyId] = useState(null)
   const { actions, minimumCakeRequired, allowance } = useProfileCreation()
 
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const cakeContract = useCake()
   const bunnyFactoryContract = useBunnyFactory()
   const TranslateString = useI18n()

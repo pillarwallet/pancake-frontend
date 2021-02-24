@@ -1,7 +1,7 @@
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useEffect, useReducer } from 'react'
 import { getPancakeRabbitContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 
 const pancakeRabbitsContract = getPancakeRabbitContract()
 
@@ -44,7 +44,7 @@ const reducer = (state: State, action: Action) => {
 
 const useGetWalletNfts = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
 
   useEffect(() => {
     const fetchNfts = async () => {

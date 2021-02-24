@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import multicall from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import masterChefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
 import useRefresh from './useRefresh'
 
 const useAllEarnings = () => {
   const [balances, setBalance] = useState([])
-  const { account }: { account: string } = useWallet()
+  const { account }: { account: string } = useEtherspotWallet()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {

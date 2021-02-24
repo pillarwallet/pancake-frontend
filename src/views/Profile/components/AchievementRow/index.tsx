@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import styled from 'styled-components'
 import { AutoRenewIcon, Button, Flex } from '@pancakeswap-libs/uikit'
 import { Achievement } from 'state/types'
 import { useToast } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { usePointCenterIfoContract } from 'hooks/useContract'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import ActionColumn from '../ActionColumn'
 import PointsLabel from './PointsLabel'
 import AchievementTitle from '../AchievementTitle'
@@ -42,7 +42,7 @@ const AchievementRow: React.FC<AchievementRowProps> = ({ achievement, onCollectS
   const [isCollecting, setIsCollecting] = useState(false)
   const TranslateString = useI18n()
   const pointCenterContract = usePointCenterIfoContract()
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const { toastError, toastSuccess } = useToast()
 
   const handleCollectPoints = () => {

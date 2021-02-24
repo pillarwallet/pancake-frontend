@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
 import UnlockButton from 'components/UnlockButton'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import { NftProviderContext } from '../contexts/NftProvider'
 import NoNftsToClaimCard from './NoNftsToClaimCard'
 import NftInWalletCard from './NftInWalletCard'
@@ -16,7 +16,7 @@ import NftInWalletCard from './NftInWalletCard'
  * 4. NFT in wallet
  */
 const StatusCard = () => {
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const { isInitialized, balanceOf } = useContext(NftProviderContext)
   const TranslateString = useI18n()
 

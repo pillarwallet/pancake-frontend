@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useMemo, useReducer } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { getBunnyFactoryContract } from 'utils/contractHelpers'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import { Actions, State, ContextType } from './types'
 
 const initialState: State = {
@@ -51,7 +51,7 @@ export const ProfileCreationContext = createContext<ContextType>(null)
 
 const ProfileCreationProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
 
   // Initial checks
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useBlock from 'hooks/useBlock'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import useGetWalletNfts, { NftMap } from 'hooks/useGetWalletNfts'
 import { getBunnyFactoryAddress } from 'utils/addressHelpers'
 import { getPancakeRabbitContract } from 'utils/contractHelpers'
@@ -36,7 +36,7 @@ const NftProvider: React.FC = ({ children }) => {
     endBlockNumber: 0,
     balanceOf: 0,
   })
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const currentBlock = useBlock()
   const { nfts: nftList } = useGetWalletNfts()
   const { isInitialized } = state

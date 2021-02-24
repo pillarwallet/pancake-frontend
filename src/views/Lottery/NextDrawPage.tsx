@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { BaseLayout } from '@pancakeswap-libs/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalClaim } from 'hooks/useTickets'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import YourPrizesCard from './components/YourPrizesCard'
 import UnlockWalletCard from './components/UnlockWalletCard'
 import TicketCard from './components/TicketCard'
@@ -38,7 +38,7 @@ const SecondCardColumnWrapper = styled.div<{ isAWin?: boolean }>`
 `
 
 const NextDrawPage: React.FC = () => {
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const { claimAmount } = useTotalClaim()
   const winnings = getBalanceNumber(claimAmount)
   const isAWin = winnings > 0

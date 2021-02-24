@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import { Card, CardBody, CardRibbon } from '@pancakeswap-libs/uikit'
 import { BSC_BLOCK_TIME } from 'config'
@@ -9,6 +8,7 @@ import makeBatchRequest from 'utils/makeBatchRequest'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { useIfoContract } from 'hooks/useContract'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import UnlockButton from 'components/UnlockButton'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
@@ -90,7 +90,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     startBlockNum: 0,
     endBlockNum: 0,
   })
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const contract = useIfoContract(address)
 
   const currentBlock = useBlock()

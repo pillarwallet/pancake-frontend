@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import {
   Card,
   CardBody,
@@ -15,6 +14,7 @@ import {
   BlockIcon,
 } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import { useProfile } from 'state/hooks'
 import Menu from './components/Menu'
 import CardHeader from './components/CardHeader'
@@ -78,7 +78,7 @@ const Section = styled.div`
 `
 
 const PublicProfile = () => {
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const { profile } = useProfile()
   const TranslateString = useI18n()
 

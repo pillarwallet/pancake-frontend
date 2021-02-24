@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { sumBy } from 'lodash'
 import { useDispatch } from 'react-redux'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Card, CardBody, CardHeader, Flex, Heading, PrizeIcon } from '@pancakeswap-libs/uikit'
 import { Achievement } from 'state/types'
 import { addPoints } from 'state/profile'
 import { addAchievement } from 'state/achievements'
 import useI18n from 'hooks/useI18n'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import { getClaimableIfoData } from 'utils/achievements'
 import AchievementRow from './AchievementRow'
 
@@ -14,7 +14,7 @@ const ClaimPointsCallout = () => {
   const [claimableAchievements, setClaimableAchievement] = useState<Achievement[]>([])
   const TranslateString = useI18n()
   const dispatch = useDispatch()
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
 
   useEffect(() => {
     const fetchIfoClaims = async () => {

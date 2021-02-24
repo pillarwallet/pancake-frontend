@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import multicall from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import masterChefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
 import { FarmConfig } from 'config/constants/types'
@@ -14,7 +14,7 @@ export interface FarmWithBalance extends FarmConfig {
 
 const useFarmsWithBalance = () => {
   const [farmsWithBalances, setFarmsWithBalances] = useState<FarmWithBalance[]>([])
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {

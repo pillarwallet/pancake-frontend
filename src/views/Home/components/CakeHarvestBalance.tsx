@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text } from '@pancakeswap-libs/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import useAllEarnings from 'hooks/useAllEarnings'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import { usePriceCakeBusd } from 'state/hooks'
 import styled from 'styled-components'
 import CardValue from './CardValue'
@@ -16,7 +16,7 @@ const Block = styled.div`
 
 const CakeHarvestBalance = () => {
   const TranslateString = useI18n()
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const allEarnings = useAllEarnings()
   const earningsSum = allEarnings.reduce((accum, earning) => {
     return accum + new BigNumber(earning).div(new BigNumber(10).pow(18)).toNumber()

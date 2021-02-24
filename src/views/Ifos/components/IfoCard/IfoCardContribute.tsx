@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useModal, Button, Text } from '@pancakeswap-libs/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import { Contract } from 'web3-eth-contract'
 import { useERC20 } from 'hooks/useContract'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { IfoStatus } from 'config/constants/types'
@@ -34,7 +34,7 @@ const IfoCardContribute: React.FC<Props> = ({
   const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
   const [userInfo, setUserInfo] = useState({ amount: 0, claimed: false })
 
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const contractRaisingToken = useERC20(currencyAddress)
   const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
   const onApprove = useIfoApprove(contractRaisingToken, address)

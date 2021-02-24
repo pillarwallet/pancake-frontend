@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, LinkExternal, useModal } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useTickets from 'hooks/useTickets'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import UnlockButton from 'components/UnlockButton'
 import MyTicketsModal from '../TicketCard/UserTicketsModal'
 
@@ -33,7 +33,7 @@ const TicketCard: React.FC<{ contractLink?: string; lotteryNumber?: number }> = 
   const tickets = useTickets(lotteryNumber)
   const ticketsLength = tickets.length
   const [onPresentMyTickets] = useModal(<MyTicketsModal myTicketNumbers={tickets} from="buy" />)
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
 
   if (!account) {
     return (

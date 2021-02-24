@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Modal, Text, InjectedModalProps, Button, AutoRenewIcon } from '@pancakeswap-libs/uikit'
 import { AbiItem } from 'web3-utils'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import claimRefundAbi from 'config/abi/claimRefund.json'
 import { getClaimRefundAddress } from 'utils/addressHelpers'
 import { getContract } from 'utils/web3'
 import { useToast } from 'state/hooks'
 import useContract from 'hooks/useContract'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import useI18n from 'hooks/useI18n'
 
 interface ClaimGiftProps extends InjectedModalProps {
@@ -18,7 +18,7 @@ const claimRefundAddress = getClaimRefundAddress()
 export const useCanClaim = () => {
   const [canClaim, setCanClaim] = useState(false)
   const [refresh, setRefresh] = useState(1)
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
 
   const checkClaimStatus = useCallback(() => {
     setRefresh((prevRefresh) => prevRefresh + 1)
@@ -46,7 +46,7 @@ const useClaimRefundContract = () => {
 
 const ClaimGift: React.FC<ClaimGiftProps> = ({ onSuccess, onDismiss }) => {
   const [isConfirming, setIsConfirming] = useState(false)
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const TranslateString = useI18n()
   const { canClaim } = useCanClaim()
   const claimRefundContract = useClaimRefundContract()

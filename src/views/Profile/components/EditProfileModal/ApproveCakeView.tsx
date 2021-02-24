@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { useCake } from 'hooks/useContract'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import { useProfile, useToast } from 'state/hooks'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -17,7 +17,7 @@ const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss
   const [isApproving, setIsApproving] = useState(false)
   const { profile } = useProfile()
   const TranslateString = useI18n()
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const { numberCakeToUpdate, numberCakeToReactivate } = useGetProfileCosts()
   const cakeContract = useCake()
   const { toastError } = useToast()

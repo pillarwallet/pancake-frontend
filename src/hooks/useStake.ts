@@ -1,13 +1,13 @@
 import { useCallback } from 'react'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useDispatch } from 'react-redux'
 import { fetchFarmUserDataAsync, updateUserStakedBalance, updateUserBalance } from 'state/actions'
 import { stake, sousStake, sousStakeBnb } from 'utils/callHelpers'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import { useMasterchef, useSousChef } from './useContract'
 
 const useStake = (pid: number) => {
   const dispatch = useDispatch()
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const masterChefContract = useMasterchef()
 
   const handleStake = useCallback(
@@ -24,7 +24,7 @@ const useStake = (pid: number) => {
 
 export const useSousStake = (sousId, isUsingBnb = false) => {
   const dispatch = useDispatch()
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
 

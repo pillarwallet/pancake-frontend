@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Toast, toastTypes } from '@pancakeswap-libs/uikit'
 import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
+import useEtherspotWallet from 'hooks/useEtherspotWallet'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -137,7 +137,7 @@ export const useToast = () => {
 // Profile
 
 export const useFetchProfile = () => {
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -177,7 +177,7 @@ export const useTeams = () => {
 // Achievements
 
 export const useFetchAchievements = () => {
-  const { account } = useWallet()
+  const { account } = useEtherspotWallet()
   const dispatch = useDispatch()
 
   useEffect(() => {
